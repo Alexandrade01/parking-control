@@ -52,5 +52,4 @@ public class ParkingSportModel implements Serializable {
 	@Column(nullable=false, length = 30)
 	private String block;
 	
-	
 }
