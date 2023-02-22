@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -103,6 +104,29 @@ public class ParkingSpotController {
 		parkingSpotService.deleteById(id);
 
 		return ResponseEntity.status(HttpStatus.OK).body("Parking Spot deleted!");
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> updateParkingSpor(@PathVariable(value = "id") UUID id, @RequestBody @Valid ParkingSpotDTO parkingSpotDTO){
+		
+		Optional<ParkingSpotModel> parkingSpotModelOptional = parkingSpotService.findById(id);
+
+		if (!parkingSpotModelOptional.isPresent()) {
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Conflict: Parking Spot not found !");
+
+		}
+		
+		var parkingSpotModelUpdated = new ParkingSpotModel();
+		
+		//copia propriedades do dto PostMan para o formato Model da tabela
+		BeanUtils.copyProperties(parkingSpotDTO, parkingSpotModelUpdated);
+		parkingSpotModelUpdated.setId(parkingSpotModelOptional.get().getId());
+		parkingSpotModelUpdated.setRegistrationDate(parkingSpotModelOptional.get().getRegistrationDate());
+		
+		
+		return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.save(parkingSpotModelUpdated));
 	}
 
 }
