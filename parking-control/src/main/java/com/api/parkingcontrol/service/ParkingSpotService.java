@@ -1,8 +1,10 @@
 package com.api.parkingcontrol.service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.api.parkingcontrol.model.ParkingSpotModel;
 
@@ -19,7 +21,7 @@ public interface ParkingSpotService {
 
 	boolean existsByApartmentAndBlock(String licensePlateCar, String block);
 
-	List<ParkingSpotModel> findAll();
+	Page<ParkingSpotModel> findAll(Pageable pageable);
 
 	Optional<ParkingSpotModel> findById(UUID id);
 
