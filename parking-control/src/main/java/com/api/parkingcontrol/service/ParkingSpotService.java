@@ -1,12 +1,22 @@
 package com.api.parkingcontrol.service;
 
-import com.api.parkingcontrol.model.ParkingSportModel;
+import java.util.List;
+
+import com.api.parkingcontrol.model.ParkingSpotModel;
 
 import jakarta.transaction.Transactional;
 
 public interface ParkingSpotService {
 
 	@Transactional
-	Object save(ParkingSportModel parkingSpotModel);
+	Object save(ParkingSpotModel parkingSpotModel);
+
+	boolean existsByLicensePlateCar(String licensePlateCar);
+
+	boolean existsByParkingSpotNumber(String licensePlateCar);
+
+	boolean existsByApartmentAndBlock(String licensePlateCar, String block);
+
+	List<ParkingSpotModel> findAll();
 
 }

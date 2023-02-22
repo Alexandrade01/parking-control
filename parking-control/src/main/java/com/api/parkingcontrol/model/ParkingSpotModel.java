@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "TB_PARKING_SPOT")
-public class ParkingSportModel implements Serializable {
+public class ParkingSpotModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
