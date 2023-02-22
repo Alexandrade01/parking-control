@@ -21,6 +21,7 @@ public class ParkingSpotServiceImpl implements ParkingSpotService {
 		repository = parkingSpotRepository;
 	}
 	
+	//Quando o registro que você já está utilizando possui um ID o spring faz um update ao invés de um insert
 	@Transactional
 	@Override
 	public Object save(ParkingSpotModel parkingSpotModel) {
