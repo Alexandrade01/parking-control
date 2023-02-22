@@ -1,6 +1,8 @@
 package com.api.parkingcontrol.service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import com.api.parkingcontrol.model.ParkingSpotModel;
 
@@ -18,5 +20,9 @@ public interface ParkingSpotService {
 	boolean existsByApartmentAndBlock(String licensePlateCar, String block);
 
 	List<ParkingSpotModel> findAll();
+
+	Optional<ParkingSpotModel> findById(UUID id);
+
+	void deleteById(UUID id);
 
 }
